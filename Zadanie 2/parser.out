@@ -1,0 +1,151 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declarations fundefs instructions
+Rule 2     declarations -> declarations declaration
+Rule 3     declarations -> <empty>
+Rule 4     declaration -> TYPE inits ;
+Rule 5     declaration -> error ;
+Rule 6     inits -> inits , init
+Rule 7     inits -> init
+Rule 8     init -> ID = expression
+Rule 9     instructions -> instructions instruction
+Rule 10    instructions -> instruction
+Rule 11    instruction -> print_instr
+Rule 12    instruction -> labeled_instr
+Rule 13    instruction -> assignment
+Rule 14    instruction -> choice_instr
+Rule 15    instruction -> while_instr
+Rule 16    instruction -> repeat_instr
+Rule 17    instruction -> return_instr
+Rule 18    instruction -> break_instr
+Rule 19    instruction -> continue_instr
+Rule 20    print_instr -> PRINT expression ;
+Rule 21    print_instr -> PRINT error ;
+Rule 22    labeled_instr -> ID : instruction
+Rule 23    assignment -> ID = expression ;
+Rule 24    choice_instr -> IF ( condition ) instruction
+Rule 25    choice_instr -> IF ( condition ) instruction ELSE instruction
+Rule 26    choice_instr -> IF ( error ) instruction
+Rule 27    choice_instr -> IF ( error ) instruction ELSE instruction
+Rule 28    while_instr -> WHILE ( condition ) instruction
+Rule 29    while_instr -> WHILE ( error ) instruction
+Rule 30    repeat_instr -> REPEAT instructions UNTIL condition ;
+Rule 31    return_instr -> RETURN expression ;
+Rule 32    continue_instr -> CONTINUE ;
+Rule 33    break_instr -> BREAK ;
+Rule 34    condition -> expression
+Rule 35    const -> INTEGER
+Rule 36    const -> FLOAT
+Rule 37    const -> STRING
+Rule 38    expression -> const
+Rule 39    expression -> ID
+Rule 40    expression -> expression + expression
+Rule 41    expression -> expression - expression
+Rule 42    expression -> expression * expression
+Rule 43    expression -> expression / expression
+Rule 44    expression -> expression % expression
+Rule 45    expression -> expression | expression
+Rule 46    expression -> expression & expression
+Rule 47    expression -> expression ^ expression
+Rule 48    expression -> expression AND expression
+Rule 49    expression -> expression OR expression
+Rule 50    expression -> expression SHL expression
+Rule 51    expression -> expression SHR expression
+Rule 52    expression -> expression EQ expression
+Rule 53    expression -> expression NEQ expression
+Rule 54    expression -> expression > expression
+Rule 55    expression -> expression < expression
+Rule 56    expression -> expression LE expression
+Rule 57    expression -> expression GE expression
+Rule 58    expression -> ( expression )
+Rule 59    expression -> ( error )
+Rule 60    expression -> ID ( expr_list_or_empty )
+Rule 61    expression -> ID ( error )
+Rule 62    expr_list_or_empty -> expr_list
+Rule 63    expr_list_or_empty -> <empty>
+Rule 64    expr_list -> expr_list , expression
+Rule 65    expr_list -> expression
+Rule 66    fundefs -> fundef fundefs
+Rule 67    fundefs -> <empty>
+Rule 68    fundef -> TYPE ID ( args_list_or_empty ) compound_instr
+Rule 69    args_list_or_empty -> args_list
+Rule 70    args_list_or_empty -> <empty>
+Rule 71    args_list -> args_list , arg
+Rule 72    args_list -> arg
+Rule 73    arg -> TYPE ID
+
+Terminals, with rules where they appear
+
+%                    : 44
+&                    : 46
+(                    : 24 25 26 27 28 29 58 59 60 61 68
+)                    : 24 25 26 27 28 29 58 59 60 61 68
+*                    : 42
++                    : 40
+,                    : 6 64 71
+-                    : 41
+/                    : 43
+:                    : 22
+;                    : 4 5 20 21 23 30 31 32 33
+<                    : 55
+=                    : 8 23
+>                    : 54
+AND                  : 48
+BREAK                : 33
+CONTINUE             : 32
+ELSE                 : 25 27
+EQ                   : 52
+FLOAT                : 36
+GE                   : 57
+ID                   : 8 22 23 39 60 61 68 73
+IF                   : 24 25 26 27
+INTEGER              : 35
+LE                   : 56
+NEQ                  : 53
+OR                   : 49
+PRINT                : 20 21
+REPEAT               : 30
+RETURN               : 31
+SHL                  : 50
+SHR                  : 51
+STRING               : 37
+TYPE                 : 4 68 73
+UNTIL                : 30
+WHILE                : 28 29
+^                    : 47
+error                : 5 21 26 27 29 59 61
+|                    : 45
+
+Nonterminals, with rules where they appear
+
+arg                  : 71 72
+args_list            : 69 71
+args_list_or_empty   : 68
+assignment           : 13
+break_instr          : 18
+choice_instr         : 14
+compound_instr       : 68
+condition            : 24 25 28 30
+const                : 38
+continue_instr       : 19
+declaration          : 2
+declarations         : 1 2
+expr_list            : 62 64
+expr_list_or_empty   : 60
+expression           : 8 20 23 31 34 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 64 65
+fundef               : 66
+fundefs              : 1 66
+init                 : 6 7
+inits                : 4 6
+instruction          : 9 10 22 24 25 25 26 27 27 28 29
+instructions         : 1 9 30
+labeled_instr        : 12
+print_instr          : 11
+program              : 0
+repeat_instr         : 16
+return_instr         : 17
+while_instr          : 15
+
